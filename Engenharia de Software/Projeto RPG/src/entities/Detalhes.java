@@ -9,12 +9,6 @@ public class Detalhes {
 		this.raca = raca;
 	}
 	
-	public boolean comparar(Detalhes detalhes) {
-		if(nome.equals(detalhes.nome)&&nome.equals(detalhes.nome)){
-		return true;
-	}else {return false;}
-	}
-	
 	public String getNome() {
 		return nome;
 	}
@@ -38,4 +32,16 @@ public class Detalhes {
 	public void setRaca(String raca) {
 		this.raca = raca;
 	}
+	
+	public String toString() {
+		return getClasse()+", "+getRaca();
+	}
+	
+	public boolean comparar(Detalhes det) {
+		if(classe.equals(det.classe)) {
+			return true;
+		}
+		return false;
+	}
+	
 }

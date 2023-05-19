@@ -9,7 +9,8 @@ public class Jogador {
 		this.nome = nome;
 		this.det = det;
 	}
-
+	
+	
 	public String getNome() {
 		return nome;
 	}
