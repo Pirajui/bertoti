@@ -11,16 +11,15 @@ public class ListaJogadores {
 		lista.add(jogador);
 	}
 	
-	public List<Jogador> buscarJogadorNome(String nome) {
-		List<Jogador> nomeEcontrado = new ArrayList<>();
+	public Jogador buscarJogadorNome(String nome) {
 		for(Jogador j: lista) {
 			if(j.getNome().equals(nome)) {
-				nomeEcontrado.add(j);
-				return nomeEcontrado;
+				return j;
 			}		
 		}
 		return null;
 	}
+	
 	
 	public List<Jogador> buscarClasse(Detalhes det) {
 		List<Jogador> classeEcontrada = new LinkedList<Jogador>();
