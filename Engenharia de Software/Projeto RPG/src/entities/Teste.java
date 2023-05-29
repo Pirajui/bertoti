@@ -24,9 +24,13 @@ class Teste {
 		
 		assertEquals(jogadorEcontrado.getDet().getClasse(), "Bardo");
 		
-		List<Jogador> classeEcontrada = listaJogadores.buscarClasse(new Detalhes("","Bardo","Humano"));
+		List<Jogador> classeEcontrada = listaJogadores.buscarClasse(new Detalhes("","Bardo",""));
 		
 		assertEquals(classeEcontrada.get(0).getNome(),"Rogerio");
+		
+		List<Jogador> racaEcontrada = listaJogadores.buscarRaca(new Detalhes("","","Humano"));
+		
+		assertEquals(racaEcontrada.get(0).getNome(),"Rogerio");
 		
 	}
 
