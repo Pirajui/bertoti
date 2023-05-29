@@ -6,7 +6,7 @@
 <div>
 <h1>Diagrama de classe UML</h1>
 
-![image](https://github.com/ryanlanziloti/bertoti/assets/81831521/3eaf5961-de67-4a5c-8e66-fd2308d4ed9e)
+![image](https://github.com/ryanlanziloti/bertoti/assets/81831521/c572d931-cb0e-4f1e-b999-1f6e9458891b)
   </div>
   
  ## Requisitos funcionais (story cards):
