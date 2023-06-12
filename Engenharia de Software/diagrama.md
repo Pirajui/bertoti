@@ -10,13 +10,17 @@
   </div>
   
  ## Requisitos funcionais (story cards):
- -	O mestre precisa cadastrar o Jogador declarando o nome, e detalhes da ficha como classe e raça 
+ -	O mestre precisa cadastrar o Jogador declarando o nome, e detalhes da ficha como classe e raça e a guilda
+ -	O mestre pode cadastrar a guilda
+ -	O mestre pode deletar um jogador da lista de jogadores 
  -	O mestre pode buscar o jogador pelo nome
  -	O mestre pode buscar jogadores pela classe
+ -	O mestre pode buscar jogadores pela guilda
+ -	O mestre pode buscar jogadores pela raça
 
   <h1>Casos de uso</h1>
   
-![image](https://github.com/ryanlanziloti/bertoti/assets/81831521/234a3edc-b609-44db-a7f2-b424105e90b5)
+![image](https://github.com/ryanlanziloti/bertoti/assets/81831521/65532880-fd38-40ab-b680-2ccbbf522a80)
   </div>
   
   <div>
