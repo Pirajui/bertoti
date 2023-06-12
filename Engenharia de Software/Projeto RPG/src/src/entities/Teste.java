@@ -16,7 +16,7 @@ class Teste {
 		listaJogadores.cadastrarGuilda(new Guilda("Flamenguistas"));
 		assertEquals(listaJogadores.getGuilda().size(),2);
 		
-		listaJogadores.cadastrarJogador(new Jogador("Rodolfo Almeida",new Detalhes("","Bardo","Orc"), listaJogadores.getGuilda().get(0).toString()));
+		listaJogadores.cadastrarJogador(new Jogador("Rodrigo Alberto",new Detalhes("","Bardo","Orc"), listaJogadores.getGuilda().get(0).toString()));
 		listaJogadores.cadastrarJogador(new Jogador("Rogerio",new Detalhes("","Bardo","Humano"), listaJogadores.getGuilda().get(1).toString()));
 		listaJogadores.cadastrarJogador(new Jogador("Rodolfo Almeida",new Detalhes("","Bardo","Orc"), listaJogadores.getGuilda().get(0).toString()));
 
