@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <style>
+        @font-face {
+            font-family: 'MinhaFontePersonalizada';
+            src: url('/all-american/All_American.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        html, body {
+            background-image: url('imagens/metalGear.jpg');
+            background-size: cover;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: MinhaFontePersonalizada, sans-serif;
+            font-variant-emoji:emoji ;
+
+        }
+
+        .container {
+            font-family: MinhaFontePersonalizada, sans-serif;
+            display: flex;
+            flex-direction: column; /* Define um layout em coluna para centralizar o conteúdo verticalmente */
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+
+        }
+        h1{
+            font-size: 100px;
+            color: #2f2fff;
+            letter-spacing: 5px; /* Define o espaçamento entre as letras (aumenta) */
+
+            -webkit-text-stroke: 2px #fffc00; /* Adiciona um contorno preto de 2px */
+        }
+        h1, table {
+            text-align: center;
+
+            margin: 10px; /* Adicione margem para separar o título da tabela */
+        }
+
+        #customers {
+            font-family: MinhaFontePersonalizada, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+            table-layout: fixed;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+
+        #customers tr {background-color: #9dfff6;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #0c60ff;
+            color: white;
+        }
+
+        button{
+            display: inline-block;
+            padding: 11px 25px;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #047512;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px #999;
+        }
+
+        button:hover {background-color: #2c622f
+        }
+
+        button:active {
+            background-color: #204921;
+            box-shadow: 0 2px #666;
+            transform: translateY(4px);
+        }
+
+        .excluir{
+            background-color: #750404;
+        }
+
+        #arroz{
+            background-color: #750404;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <h1>&#11088; Jogos Irados &#11088;</h1>
+        <table id="customers">
+            <tr>
+                <th style="width: 333px;">Nome</th>
+                <th style="width: 233px;">Ano Lan&ccedil;amento</th>
+                <th style="width: 233px;">Distribuidora</th>
+                <th style="width: 333px;"></th>
+            </tr>
+            <tbody>
+
+            </tbody>
+        </table>
+        <button id='cadastrar'><i class="fas fa-clock"></i> Registrar Jogo</a></button>
+
+    </div>
+
+    <script>
+        document.getElementById('cadastrar').addEventListener('click', function(event) {
+            window.location.href= 'http://localhost:1235/cadastrarJogo.html';
+        });
+        function deleteItem(id) {
+            if (confirm("Tem certeza de que deseja excluir este item?")) {
+                fetch(`/jogo/${id}`, {
+                    method: "DELETE",
+                })
+                    .then(response => {
+                        location.reload();
+                    })
+                    .catch(error => {
+                        console.error("Erro ao excluir o item:", error);
+                    });
+            }
+        }
+
+        function visualizarJogo(id){
+            window.location.href = `http://localhost:1235/visualizarJogo.html?id=${id}`;
+        }
+
+        const apiUrl = "/jogos";
+        const requestOptions = {
+            method: "GET"
+        };
+        fetch(apiUrl, requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                // Reference to the table body
+                const tableBody = document.querySelector(
+                    ".container tbody"
+                );
+
+                // Loop through the retrieved data and populate the table
+                data.forEach((jogo) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${jogo.nome}</td>
+                        <td>${jogo.ano_lan}</td>
+                        <td>${jogo.desenvolvedora}</td>
+                        <td>
+                            <button onclick="visualizarJogo(${jogo.id})"  class="editar">
+                                <i class="fas fa-eye"></i> Visualizar
+                            </button>
+
+                            <button id="arroz" onclick="deleteItem(${jogo.id})" class="editar">
+                                <i class="fas fa-trash-alt"></i> Deletar
+                            </button>
+                        </td>
+                    `;
+                tableBody.appendChild(row);
+            });
+
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+    </script>
+</body>
+</html>
+
+

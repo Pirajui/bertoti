@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        @font-face {
+            font-family: 'MinhaFontePersonalizada';
+            src: url('/all-american/All_American.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        html, body {
+            background-image: url('imagens/jogosIrados.jpg');
+            background-size: cover;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: MinhaFontePersonalizada, sans-serif;
+            font-variant-emoji:emoji ;
+
+        }
+
+        .container {
+            font-family: MinhaFontePersonalizada, sans-serif;
+            display: flex;
+            flex-direction: column; /* Define um layout em coluna para centralizar o conteúdo verticalmente */
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .test{
+            width: 70%; /* Largura da div */
+            height: 70%; /* Altura da div */
+            background-color: rgba(190, 190, 190, 0.5); /* Cor cinza semi-transparente (no formato RGBA) */
+            border: 1px solid #000; /* Borda preta de 1px (opcional) */
+            border-radius: 100px;
+            display: flex;
+            flex-direction: column; /* Define um layout em coluna para centralizar o conteúdo verticalmente */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .conteudo{
+            width: 90%; /* Largura da div */
+            height: 90%; /* Altura da div */
+            position: relative;
+
+        }
+
+        #nome_{
+            position: absolute;
+            left: 45px;
+            top: 90px;
+        }
+
+        #nome{
+            width: 300px;
+        }
+
+        #desenvolvedora{
+            width: 300px;
+        }
+
+        #desenvolvedora_{
+            position: absolute;
+            left: 445px;
+            top: 90px;
+        }
+
+        #lancamento_{
+            position: absolute;
+            left: 45px;
+            top: 135px;
+        }
+
+        #lancamento{
+            width: 100px;
+        }
+
+        #estado_{
+            position: absolute;
+            left: 410px;
+            top: 135px;
+        }
+
+        #estado{
+            width: 100px;
+        }
+
+        #nota_{
+            position: absolute;
+            left: 728px;
+            top: 135px;
+        }
+
+        #nota{
+            width: 100px;
+        }
+
+        #descricao_{
+            position: absolute;
+            left: 45px;
+            top: 165px;
+        }
+
+        #descricao{
+            left: 433px;
+            top: 200px;
+            width: 825px;
+            height: 150px;
+            resize: none;
+        }
+
+        #confirmar {
+            position: absolute;
+            left: 121px;
+            top: 365px;
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #047512;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        #confirmar:hover {background-color: #2c622f
+        }
+
+        #confirmar:active {
+            background-color: #204921;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        #cancelar {
+            position: absolute;
+            left: 621px;
+            top: 365px;
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #750404;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        #cancelar:hover {background-color: #622c2c
+        }
+
+        #cancelar:active {
+            background-color: #492020;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="test">
+            <div class="conteudo">
+                <form id="formulario">
+
+                    <label id="nome_" for="nome">Nome: <input type="text" id="nome" required></label>
+                    <label id="desenvolvedora_" for="desenvolvedora">Desenvolvedora: <input type="text" id="desenvolvedora" required></label>
+
+                    <label id="lancamento_" for="lancamento">Data de Lançamento: <input type="date" id="lancamento" required></label>
+
+                    <label id="nota_" for="nota">Nota: <input type="number" id="nota" required></label>
+
+                    <label id="descricao_" for="descricao">Descrição:<br> <textarea id="descricao" res>  </textarea></label>
+
+                    <button id="confirmar" type="submit">Adicionar Jogo</button>
+                    <button id="cancelar" type="button">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const formulario = document.getElementById('formulario');
+    const nome = document.getElementById('nome');
+    const ano_lan = document.getElementById('lancamento');
+    const descricao = document.getElementById('descricao');
+    const nota = document.getElementById('nota');
+    const desenvolvedora = document.getElementById('desenvolvedora');
+
+    function cadastrar(){
+        fetch("http://localhost:1235/cadastrarJogo",
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    nome: nome.value,
+                    ano_lan: ano_lan.value,
+                    descricao: descricao.value,
+                    nota: nota.value,
+                    desenvolvedora: desenvolvedora.value
+                })
+            })
+            .then(function (res) {
+                // Verifica se a resposta da requisição foi bem-sucedida
+                if (res.ok) {
+                    // Redireciona para a outra página HTML após o cadastro bem-sucedido
+                    window.location.href='http://localhost:1235/pagina.html';
+                } else {
+                    console.log("Erro ao cadastrar");
+                }
+            })
+            .catch(function (res) {
+                console.log(res)
+            })
+    }
+
+    formulario.addEventListener('submit', function (event) {
+        event.preventDefault();
+        cadastrar();
+    });
+
+    document.getElementById('cancelar').addEventListener("click", function (event) {
+        window.location.href= 'http://localhost:1235/pagina.html';
+    });
+</script>
+</body>
+</html>
